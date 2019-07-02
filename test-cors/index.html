@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cors Bypass Test</title>
+</head>
+<style>
+  html,
+  body {
+    text-align: center;
+  }
+
+  .inputBoxes {
+    border: 2px solid green;
+    border-radius: 2px;
+    width: 500px;
+    font-size: 15px;
+    padding: 2.5px;
+    margin: 0 auto;
+  }
+
+  button.inputBoxes {
+    width: 200px;
+  }
+
+  .inputBoxes::placeholder {
+    color: #999;
+  }
+
+  #error {
+    border-color: red;
+  }
+
+  .detail {
+    text-align: left;
+  }
+</style>
+
+<body onload="">
+  <h1>Bunch of Tools related to CORS.</h1>
+  <h2>CORS Bypass Test</h2>
+  <div class="detail">
+    <pre>CORS Blocked URL: https://github.com/imlolman/Paytm-Payment-Gateway-Integration-using-Google-Cloud-Function</pre>
+    <pre>CORS Enabled URL: <span id="CORSenabled">...</span></pre><br>
+  </div>
+  <input type="text" class="inputBoxes" placeholder='url' id="CORSurlBox"><br><br>
+  <button class="inputBoxes" onclick="CORSfetchfunction(document.querySelector('#CORSurlBox').value)">Run fetch
+    Function</button><br><br>
+  <textarea id="CORSresponse" class="inputBoxes" rows="10" placeholder="Result"></textarea><br>
+  <textarea id="CORSerror" class="inputBoxes" rows="5" placeholder="Error"></textarea>
+
+  <br><br><br>
+  <h2>Load Open Graph Image</h2>
+  <div class="detail">
+    <pre>OG Image Blocked URL: https://github.com/imlolman/Paytm-Payment-Gateway-Integration-using-Google-Cloud-Function</pre>
+    <pre>OG Image Enabled URL: <span id="OGenabled">...</span></pre><br>
+  </div>
+  <input type="text" class="inputBoxes" placeholder='url' id="OGurlBox"><br><br>
+  <button class="inputBoxes" onclick="OGfetchfunction(document.querySelector('#OGurlBox').value)">Fetch Open Graph
+    Image</button><br><br>
+  <div class="inputBoxes" id="OGresponse"></div>
+</body>
+<script>
+  CORSEnabled = document.querySelector('#CORSenabled')
+  CORSresponse = document.querySelector('#CORSresponse')
+  CORSerror = document.querySelector('#CORSerror')
+  OGEnabled = document.querySelector('#OGenabled')
+  OGresponse = document.querySelector('#OGresponse')
+  var bypassURL = null
+
+  fetch('https://us-central1-corsbypassurl.cloudfunctions.net/getCORSurl').then(res => res.text()).then(data => {
+    CORSenabled.innerHTML = data +
+      '/?url=https://github.com/imlolman/Paytm-Payment-Gateway-Integration-using-Google-Cloud-Function';
+    OGenabled.innerHTML = data +
+      '/og-image.php?url=https://github.com/imlolman/Paytm-Payment-Gateway-Integration-using-Google-Cloud-Function&resolution=500x300&quality=10&crop=false';
+    bypassURL = data;
+  }).catch(
+    err => errordiv.value = err);
+
+
+  function CORSfetchfunction(url = "https://www.tutorialspoint.com/") {
+    fetch(url).then(res => res.text()).then(data => {
+      CORSresponse.value = data;
+      CORSerror.value = ''
+    }).catch(err => {
+      CORSerror.value = err;
+      CORSresponse.value = '';
+    });
+  }
+
+  function OGfetchfunction(url = "https://www.tutorialspoint.com/") {
+    OGresponse.innerHTML = "<img src='" + url + "'>"
+  }
+</script>
+
+</html>

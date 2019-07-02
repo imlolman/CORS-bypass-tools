@@ -1,0 +1,7 @@
+Usage: 
+
+    / => Bypass CORS by Loading Data using Backend Server and Returning with Access-Control-Allow-Origin: * Header
+        Get Params:
+            url (required) => URL to Load Get Data | Example => url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search
+
+        Example => /?url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search

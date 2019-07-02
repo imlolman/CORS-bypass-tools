@@ -1,0 +1,21 @@
+Usage: 
+
+    / => Bypass CORS by Loading Data using Backend Server and Returning with Access-Control-Allow-Origin: * Header
+        Get Params:
+            url (required) => URL to Load Get Data | Example => url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search
+
+        Example => /?url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search
+
+
+
+
+
+    /og-image.php => Get OpenGraph Image Data with Different Resolution and Quality.
+        Get Params:
+            url (required)        => URL to extract OpenGraph API Image     | Example => url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search
+            resolution (optional) => Resolution in Which you want Image     | Example => resolution=500x300
+            quality (optional)    => Ranges from 1 to 100  (default=100)    | Example => quality=10
+            crop (optional)       => true/false  (default=false)            | Example => crop=false
+
+
+        Example => /og-image.php?url=https://github.com/imlolman/Font-Awesome-Offline-Quick-Icon-Search&resolution=500x300&quality=10&crop=false

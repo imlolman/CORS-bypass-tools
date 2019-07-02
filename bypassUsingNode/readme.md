@@ -1,0 +1,1 @@
+# Simple Node.js CORS Bypass Script. Upload it in Heroku and Enjoy.
